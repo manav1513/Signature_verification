@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Upload and Verification</title>
+</head>
+<body>
+
+<h2>Upload Signature for Verification</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="signature_image" accept="image/*" required>
+    <button type="submit">Upload</button>
+</form>
+
+{% if signature_id %}
+    <h3>Signature Upload Result</h3>
+    <p>Signature ID: {{ signature_id }}</p>
+    <p>Confidence Score: {{ confidence }}</p>
+    <p>Result: {% if is_genuine %} Genuine {% else %} Forged {% endif %}</p>
+{% endif %}
+
+</body>
+</html>
